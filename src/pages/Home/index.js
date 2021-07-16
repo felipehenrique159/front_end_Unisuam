@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import api from '../../services/api'
 import './home.css'
+import Swal from 'sweetalert2'
 
 export default function Home() {
 
@@ -16,19 +17,33 @@ export default function Home() {
 
         if (validaDados()) {
             try {
-                await api.post('indicacoes', {
-                    data: {
-                        nome: nome,
-                        cpf: cpf,
-                        telefone: telefone,
-                        email: email,
-                    }
+                const res = await api.post('indicacoes', {
+                    nome: nome,
+                    cpf: cpf,
+                    telefone: telefone,
+                    email: email,
                 })
-                toast.success('sucesso')
+                toast.info(res.data.message)
+                setNome('')
+                setCpf('')
+                setTelefone('')
+                setEmail('')
             } catch (error) {
-                console.log(error.message);
-                toast.error(error.message)
+                let mensagensBackend = []
+                let path = error.response.data.errors
+                Object.keys(path).forEach(function (item) {
+                    mensagensBackend.push(" " + path[item] + ' ');
+                });
+
+                Swal.fire({
+                    title: 'Erros ao salvar',
+                    text: mensagensBackend,
+                    icon: 'error',
+                    heightAuto: false
+                });
+
             }
+
         }
         else {
             toast.error('Preencher campos obrigatórios')
@@ -38,7 +53,6 @@ export default function Home() {
     function validaDados() {
 
         let erro = 0;
-
         if (nome.trim() === '') {
             erro++
         }
@@ -64,7 +78,6 @@ export default function Home() {
                 erro++
             }
         }
-
         if (erro === 0) {
             setErroCampoObg(false)
             return 1
