@@ -3,6 +3,7 @@ import './indicacoes.css'
 import api from '../../services/api'
 import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
+import { FiTrash } from 'react-icons/fi'
 
 export default function Indicacoes() {
 
@@ -61,13 +62,13 @@ export default function Indicacoes() {
                                             <td>{indicacao.email}</td>
                                             <td>{indicacao.get_status.descricao}</td>
                                             <td className="btn-grid">
-                                                {indicacao.get_status.id == 2 && indicacao.get_status.id != 3 ?
-                                                    <button className="btn-alterar-status" onClick={() => { alterarStatus(indicacao.id) }}>Ir para em finalizar</button>
+                                                {indicacao.get_status.id === 2 && indicacao.get_status.id !== 3 ?
+                                                    <button className="btn-alterar-status" onClick={() => { alterarStatus(indicacao.id) }}>Mudar p/ finalizar</button>
                                                     :
-                                                    <button className="btn-alterar-status" onClick={() => { alterarStatus(indicacao.id) }}>Ir para em processo</button>
+                                                    <button className="btn-alterar-status" onClick={() => { alterarStatus(indicacao.id) }}>Mudar p/ processo</button>
 
                                                 }
-                                                <button className="btn-excluir">excluir indicacao</button>
+                                                <button className="btn-excluir">Excluir <FiTrash/></button>
                                             </td>
                                         </tr>
 
