@@ -1,0 +1,90 @@
+table{
+    border: 1px solid #CCC;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table tr{
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th, table td{
+    padding: .72em;
+    text-align: center;
+    width: 180px;
+}
+
+
+table th{
+    font-size: .95em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-family: 'Roboto';
+}
+
+.container-table{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #835afd;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.btn-grid{
+    display: flex;
+   
+}
+
+.btn-grid .btn-alterar-status{
+    margin-left: 3px;
+    background-color: #835afd;
+    color: #FFF;
+    border: 0;
+    border-radius: 7px;
+    padding: 7px;
+    cursor: pointer;
+}
+
+
+.btn-grid .btn-excluir{
+    margin-left: 3px;
+    background-color:  #ea4335;
+    color: #FFF;
+    border: 0;
+    border-radius: 7px;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.table-null-msg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.table-null-msg h1{
+    font-family: 'Roboto';
+    color: #FFF;
+}
+
+.table-null-msg a{
+    font-family: 'Roboto';
+    color: #FFF;
+    text-decoration: none;
+    margin-top: 12px;
+    background-color:  #ea4335;
+    padding: 10px;
+    border-radius: 7px;
+    transition: filter 0.2s;
+}
+
+a:hover{
+    filter: brightness(0.7);
+}

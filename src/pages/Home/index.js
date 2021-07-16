@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import api from '../../services/api'
 import './home.css'
 import Swal from 'sweetalert2'
+import { useHistory, Link } from 'react-router-dom'
 
 export default function Home() {
 
@@ -11,6 +12,7 @@ export default function Home() {
     const [telefone, setTelefone] = useState('')
     const [email, setEmail] = useState('')
     const [erroCampoObg, setErroCampoObg] = useState(false)
+    const history = useHistory()
 
     async function salvar(e) {
         e.preventDefault()
@@ -28,6 +30,7 @@ export default function Home() {
                 setCpf('')
                 setTelefone('')
                 setEmail('')
+                history.push('/indicacoes')
             } catch (error) {
                 let mensagensBackend = []
                 let path = error.response.data.errors
@@ -129,6 +132,9 @@ export default function Home() {
                 </form>
 
                 <button type="submit" className="btn-form" onClick={salvar}>Indicar</button>
+                <Link to="/indicacoes">
+                    Ir para Indicações
+                </Link>
             </div>
         </div>
 
