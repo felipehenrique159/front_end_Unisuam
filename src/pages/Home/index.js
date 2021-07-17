@@ -32,18 +32,25 @@ export default function Home() {
                 setEmail('')
                 history.push('/indicacoes')
             } catch (error) {
-                let mensagensBackend = []
-                let path = error.response.data.errors
-                Object.keys(path).forEach(function (item) {
-                    mensagensBackend.push(" " + path[item] + ' ');
-                });
+                console.log(error);
+                if (error.response.status === 500) {
+                    toast.error(error.message)
+                }
+                else {
+                    let mensagensBackend = []
+                    let path = error.response.data.errors
+                    Object.keys(path).forEach(function (item) {
+                        mensagensBackend.push(" " + path[item] + ' ');
+                    });
 
-                Swal.fire({
-                    title: 'Erros ao salvar',
-                    text: mensagensBackend,
-                    icon: 'error',
-                    heightAuto: false
-                });
+                    Swal.fire({
+                        title: 'Erros ao salvar',
+                        text: mensagensBackend,
+                        icon: 'error',
+                        heightAuto: false
+                    });
+
+                }
 
             }
 
