@@ -61,7 +61,7 @@ export default function Home() {
     }
 
     function validaDados() {
-
+        console.log(cpfSomenteNumeros(cpf.trim()));
         let erro = 0;
         if (nome.trim() === '') {
             erro++
@@ -70,7 +70,7 @@ export default function Home() {
             erro++
         }
         else {
-            if (cpf.trim().length < 11 || cpf.trim().length > 11) { //cpf invalido
+            if (cpfSomenteNumeros(cpf.trim()).length < 11 || cpfSomenteNumeros(cpf.trim()).length > 11) { //cpf invalido
                 toast.error('Cpf Inválido')
                 erro++
             }
@@ -83,7 +83,7 @@ export default function Home() {
             erro++
         }
         else {
-            if (!validateEmail(email)) {
+            if (!validaEmail(email)) {
                 toast.error('Email Inválido')
                 erro++
             }
@@ -98,10 +98,14 @@ export default function Home() {
         }
     }
 
-    function validateEmail(email) {
+    function validaEmail(email) {
         var re = /\S+@\S+\.\S+/;
         return re.test(email);
     }
+
+    function cpfSomenteNumeros(cpf){
+        return cpf.toString().replace(/\.|-/gm,'');
+   }
 
     return (
         <div className="container">
