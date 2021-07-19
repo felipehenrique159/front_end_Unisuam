@@ -20,10 +20,10 @@ export default function Home() {
         if (validaDados()) {
             try {
                 const res = await api.post('indicacoes', {
-                    nome: nome,
-                    cpf: cpf,
-                    telefone: telefone,
-                    email: email,
+                    nome: nome.trim(),
+                    cpf: cpfSomenteNumeros(cpf.trim()),
+                    telefone: telefone.trim(),
+                    email: email.trim(),
                 })
                 toast.info(res.data.message)
                 setNome('')
